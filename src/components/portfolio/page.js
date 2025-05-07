@@ -38,9 +38,9 @@ const Portfolio = () => {
         {/* heading */}
         <div className="flex items-center gap-3 mb-8">
           <div className="flex items-center justify-center w-12 h-12 rounded-full bg-yellow-900/30">
-            <LuCoins className="text-yellow-400 text-3xl" />
+            <LuCoins className="text-[#d2af57] text-3xl" />
           </div>
-          <p className="text-yellow-400 text-3xl sm:text-4xl font-bold">
+          <p className="gold-text text-3xl sm:text-4xl font-bold">
             Your Portfolio
           </p>
         </div>
@@ -61,15 +61,15 @@ const Portfolio = () => {
               </thead>
               <tbody className="">
                 {portfolio?.map((e, i) => (
-                  <tr key={i} className="hover:bg-yellow-900">
+                  <tr key={i} className="">
                     {/* Asset Info */}
                     <td className="py-5">
                       <div className="flex items-center gap-4">
-                        <div className="flex items-center justify-center w-10 h-10 rounded-full bg-yellow-600">
+                        <div className="flex items-center justify-center w-10 h-10 rounded-full gold-gradient-btn">
                           {/* {e.asset[0]?.icon} */}
                         </div>
                         <div>
-                          <p className="text-yellow-400 text-lg">
+                          <p className="gold-text text-lg">
                             {e.asset[1]?.coin}
                           </p>
                           <p className="text-gray-400 text-sm">
@@ -83,7 +83,7 @@ const Portfolio = () => {
                     <td className="text-lg py-4">{e.amount}</td>
 
                     {/* Value */}
-                    <td className="text-lg text-yellow-400 py-4">{e.value}</td>
+                    <td className="text-lg gold-text py-4">{e.value}</td>
 
                     {/* Change */}
                     <td className="text-lg text-end text-green-400 py-4">

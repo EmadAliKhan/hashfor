@@ -12,10 +12,10 @@ const Footer = () => {
         <footer className="footer sm:footer-horizontal bg-black text-white p-10 border-t border-b border-white-400">
           <aside className="mt-[60px] mb-[60px]">
             <div className="flex gap-2">
-              <p className="border-black rounded-xl p-2 bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600">
+              <p className="border-black rounded-xl p-2 gold-gradient-btn">
                 <LuWallet className="text-4xl text-black" />
               </p>
-              <p className="text-yellow-400 text-2xl font-bold mt-2">Hashfor</p>
+              <p className="gold-text text-2xl font-bold mt-2">Hashfor</p>
             </div>
             <div className="mt-3">
               <p className="text-lg">
@@ -31,7 +31,7 @@ const Footer = () => {
             </div>
           </aside>
           <nav className="mt-[60px] mb-[60px] text-lg cursor-pointer">
-            <h6 className="footer-title text-yellow-400">PRODUCT</h6>
+            <h6 className="footer-title gold-text">PRODUCT</h6>
             <Link href="" className=" hover:text-yellow-400">
               Dashboard
             </Link>
@@ -49,7 +49,7 @@ const Footer = () => {
             </Link>
           </nav>
           <nav className="mt-[60px] mb-[60px] text-lg cursor-pointer">
-            <h6 className="footer-title text-yellow-400">RESOURCES</h6>
+            <h6 className="footer-title gold-text">RESOURCES</h6>
             <Link href="" className=" hover:text-yellow-400">
               Documentation
             </Link>
@@ -67,7 +67,7 @@ const Footer = () => {
             </Link>
           </nav>
           <nav className="mt-[60px] text-lg cursor-pointer">
-            <h6 className="footer-title text-yellow-400">COMPANY</h6>
+            <h6 className="footer-title gold-text">COMPANY</h6>
             <Link href="" className=" hover:text-yellow-400">
               About
             </Link>

@@ -54,12 +54,10 @@ export default function Example() {
                 src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=500"
                 className="h-8 w-auto"
               /> */}{" "}
-              <p className="border-black rounded-xl p-2 bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600">
+              <p className="border-black rounded-xl p-2 gold-gradient-btn">
                 <LuWallet className="text-2xl text-black" />
               </p>
-              <h5 className="text-yellow-400 font-bold text-2xl ps-3">
-                Hashfor
-              </h5>
+              <h5 className="gold-text font-bold text-2xl ps-3">Hashfor</h5>
             </div>
           </div>
 
@@ -73,8 +71,8 @@ export default function Example() {
                   aria-current={item.current ? "page" : undefined}
                   className={classNames(
                     item.current
-                      ? "text-yellow-500"
-                      : "text-gray-400 hover:bg-gray-700 hover:text-white",
+                      ? "gold-text"
+                      : "text-gray-400 hover:gold-gradient-btn hover:text-white",
                     "rounded-md px-3 py-2 text-md font-medium"
                   )}
                 >
@@ -88,7 +86,7 @@ export default function Example() {
           <div className="hidden sm:flex absolute inset-y-0 right-0 items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
             <button
               type="button"
-              className="flex items-center gap-2 rounded-full bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 px-4 py-2 text-black font-medium shadow hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+              className="flex items-center gap-2 rounded-full gold-gradient-btn px-4 py-2 text-black font-medium shadow hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
             >
               <WalletIcon className="h-5 w-5" />
               Connect Wallet

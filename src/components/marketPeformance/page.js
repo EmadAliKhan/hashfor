@@ -27,9 +27,7 @@ const MarketPerformance = () => {
         {/* heading section */}
         <div className="flex flex-wrap justify-between mt-13">
           <div className="pl-10">
-            <p className="text-4xl font-bold text-yellow-400">
-              Market Performance
-            </p>
+            <p className="text-4xl font-bold gold-text">Market Performance</p>
             <p className="text-lg text-gray-400">
               Token price and volume history
             </p>
@@ -39,7 +37,7 @@ const MarketPerformance = () => {
               return (
                 <button
                   key={i}
-                  className=" text-yellow-400 font-bold text-md border rounded-xl p-1 hover:bg-yellow-400 hover:text-black ms-2"
+                  className="gold-text font-bold text-md border border-[#ECCE68] rounded-xl p-1  ms-2"
                 >
                   {e.day}
                 </button>
@@ -50,13 +48,13 @@ const MarketPerformance = () => {
         {/* chart section */}
         <div className="flex justify-center items-center p-10 mt-5">
           <div
-            className="border border-yellow-400 rounded-xl p-6 w-full "
+            className="border border-[#ECCE68] rounded-xl p-6 w-full "
             style={{
               background:
-                "linear-gradient(to left, #000, rgba(270, 230, 0, 0.2))",
+                "  linear-gradient(to left,rgba(217, 204, 138, 0.42), rgba(236, 206, 104, 0.3), rgba(181, 144, 44, 0.3))",
             }}
           >
-            <Line
+            {/* <Line
               data={{
                 labels: ["Jan", "Feb", "March", "Apr", "May", "June"],
                 datasets: [
@@ -65,7 +63,7 @@ const MarketPerformance = () => {
                     data: [350, 126, 328, 119, 232, 345],
                     fill: true,
                     // backgroundColor: "black",
-                    borderColor: "rgba(191, 174, 44, 0.76)",
+                    borderColor: "black",
                     tension: 0.4,
                   },
                 ],
@@ -73,6 +71,54 @@ const MarketPerformance = () => {
               options={{
                 responsive: true,
                 maintainAspectRatio: false,
+              }}
+              height={200}
+            /> */}
+            <Line
+              data={{
+                labels: ["Jan", "Feb", "March", "Apr", "May", "June"],
+                datasets: [
+                  {
+                    label: "Finance",
+                    data: [350, 126, 328, 119, 232, 345],
+                    fill: true,
+                    borderColor: "black",
+                    tension: 0.4,
+                  },
+                ],
+              }}
+              options={{
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                  legend: {
+                    labels: {
+                      color: "#ffffff", // White legend text
+                    },
+                  },
+                  tooltip: {
+                    titleColor: "#ffffff",
+                    bodyColor: "#ffffff",
+                  },
+                },
+                scales: {
+                  x: {
+                    ticks: {
+                      color: "#ffffff", // White X-axis labels
+                    },
+                    grid: {
+                      color: "rgba(255,255,255,0.1)", // Optional: faint white grid
+                    },
+                  },
+                  y: {
+                    ticks: {
+                      color: "#ffffff", // White Y-axis labels
+                    },
+                    grid: {
+                      color: "rgba(255,255,255,0.1)", // Optional: faint white grid
+                    },
+                  },
+                },
               }}
               height={200}
             />
