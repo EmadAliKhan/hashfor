@@ -5,6 +5,9 @@ import { LuWallet } from "react-icons/lu";
 import { FaGithub } from "react-icons/fa6";
 import { FaTwitter } from "react-icons/fa";
 import { FaDiscord } from "react-icons/fa6";
+import Image from "next/image";
+import logo from "../../../public/logo.png";
+
 const Footer = () => {
   return (
     <>
@@ -12,9 +15,16 @@ const Footer = () => {
         <footer className="footer sm:footer-horizontal bg-black text-white p-10 border-t border-b border-white-400">
           <aside className="mt-[60px] mb-[60px]">
             <div className="flex gap-2">
-              <p className="border-black rounded-xl p-2 gold-gradient-btn">
+              {/* <p className="border-black rounded-xl p-2 gold-gradient-btn">
                 <LuWallet className="text-4xl text-black" />
-              </p>
+              </p> */}
+              <Image
+                width={300}
+                height={300}
+                alt="Your Company"
+                src={logo}
+                className="h-14 w-auto"
+              />
               <p className="gold-text text-2xl font-bold mt-2">Hashfor</p>
             </div>
             <div className="mt-3">

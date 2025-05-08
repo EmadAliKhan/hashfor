@@ -97,7 +97,7 @@ const FutureFinanace = () => {
           <p className="text-4xl font-bold gold-text">Market Overview</p>
         </div>
 
-        <div className="flex justify-center flex-row flex-wrap gap-9 text-white mt-13">
+        <div className="flex justify-center flex-row flex-wrap gap-9 text-white mt-13 cursor-pointer">
           {marketOverview?.map((e, i) => {
             return (
               <div
@@ -112,6 +112,7 @@ const FutureFinanace = () => {
                   <p className="flex items-center justify-center w-14 h-14 rounded-full bg-yellow-900/30 mb-4">
                     {e.icon}
                   </p>
+
                   <button className="text-xs btn btn-success rounded-full">
                     {e.changes} %
                   </button>

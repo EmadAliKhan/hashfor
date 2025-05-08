@@ -11,6 +11,7 @@ import { Bars3Icon, XMarkIcon, WalletIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import Link from "next/link";
 import { LuWallet } from "react-icons/lu";
+import logo from "../../../public/logo.png";
 
 const navigation = [
   { name: "Dashboard", href: "#", current: true },
@@ -54,9 +55,16 @@ export default function Example() {
                 src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=500"
                 className="h-8 w-auto"
               /> */}{" "}
-              <p className="border-black rounded-xl p-2 gold-gradient-btn">
+              {/* <p className="border-black rounded-xl p-2 gold-gradient-btn">
                 <LuWallet className="text-2xl text-black" />
-              </p>
+              </p> */}
+              <Image
+                width={300}
+                height={300}
+                alt="Your Company"
+                src={logo}
+                className="h-12 w-auto"
+              />
               <h5 className="gold-text font-bold text-2xl ps-3">Hashfor</h5>
             </div>
           </div>

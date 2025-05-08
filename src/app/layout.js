@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "Hashfor",
+  title: "Hashfor-Next Generation DeFi Platform",
   description: "Next Generation DeFi Platform",
 };
 
