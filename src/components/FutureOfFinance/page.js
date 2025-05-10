@@ -113,9 +113,10 @@ const FutureFinanace = () => {
                     {e.icon}
                   </p>
 
-                  <button className="text-xs btn btn-success rounded-full">
+                  {/* <button className="text-xs btn btn-success rounded-full">
                     {e.changes} %
-                  </button>
+                  </button> */}
+                  <div className="badge badge-success">{e.changes} % </div>
                 </div>
                 <div>
                   <p className="text-gray-400">{e.name}</p>
