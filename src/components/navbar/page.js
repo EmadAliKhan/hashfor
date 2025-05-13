@@ -1,3 +1,4 @@
+"use client"
 import {
   Disclosure,
   DisclosureButton,
@@ -12,6 +13,43 @@ import Image from "next/image";
 import Link from "next/link";
 import { LuWallet } from "react-icons/lu";
 import logo from "../../../public/logo.png";
+import { ethers } from "ethers";
+import Web3Modal from "web3modal";
+import { CoinbaseWalletSDK } from "@coinbase/wallet-sdk";
+import WalletConnectProvider from "@walletconnect/web3-provider";
+import {  useState } from "react";
+function getProvider() {
+  const provider = window.safepalProvider; // Check if SafePal provider is injected
+  if (!provider) {
+    // If SafePal provider is not found, open the download link
+    window.open("https://www.safepal.com/download");
+    throw new Error(
+      "Please go to our official website to download SafePal wallet."
+    );
+  }
+  return provider;
+}
+const providerOptions = {
+  
+  coinbasewallet: {
+    package: CoinbaseWalletSDK,
+    options: {
+      appName: "Web3Modal Demo",
+      infuraId: "https://rpc.testnet.fantom.network", // Replace with the correct RPC URL if needed
+    },
+  },
+
+  walletconnect: {
+    package: WalletConnectProvider,
+    options: {
+      rpc: {
+        4002: "https://rpc.testnet.fantom.network", // Replace with the correct RPC URL
+      },
+      bridge: "https://bridge.walletconnect.org", // Default WalletConnect bridge
+      qrcode: true, // Show QR code for connection
+    },
+  },
+};
 
 const navigation = [
   { name: "Dashboard", href: "#", current: true },
@@ -25,7 +63,72 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
+
+
 export default function Example() {
+  const [account, setAccount] = useState(null);
+  const [signer, setSigner] = useState(null);
+    
+    const connectWallet = async () => {
+      console.log("connectting");
+          try {
+            const web3Modal = new Web3Modal({
+              cacheProvider: false,
+              providerOptions,
+              themeVariables: {
+                '--w3m-color-mix': '#00BB7F',
+                '--w3m-color-mix-strength': 40
+              }
+            });
+      
+            const web3modalInstance = await web3Modal.connect();
+            const web3modalProvider = new ethers.providers.Web3Provider(
+              web3modalInstance
+            );
+            let provider;
+            if (window.safepalProvider) {
+              provider = new ethers.providers.Web3Provider(getProvider()); // SafePal provider
+            } else {
+              // Fallback to Web3Modal provider
+              provider = new ethers.providers.Web3Provider(web3modalInstance);
+            }
+            const signer = web3modalProvider.getSigner();
+            console.log(signer);
+                       // Update state with wallet details
+                       const address = await signer.getAddress();
+
+      setSigner(signer);
+      setAccount(address);
+            return true;
+          } catch (error) {
+            console.log("Error connecting wallet:", error);
+
+          }
+    };
+    const disconnectWallet = async () => {
+      try {
+        const web3Modal = new Web3Modal({
+          cacheProvider: false,
+          providerOptions,
+        });
+    
+        // Clear cache
+        web3Modal.clearCachedProvider();
+    
+        // If the provider has a disconnect method, call it
+        if (window.ethereum?.disconnect) {
+          await window.ethereum.disconnect();
+        }
+    
+        // Reset state
+        setAccount(null);
+        setSigner(null);
+    
+        console.log("Wallet disconnected");
+      } catch (error) {
+        console.log("Error disconnecting wallet:", error);
+      }
+    };
   return (
     <Disclosure as="nav" className="bg-black fixed top-0 w-full z-50">
       <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -91,14 +194,23 @@ export default function Example() {
           </div>
 
           {/* Desktop Connect Wallet button */}
-          <div className="hidden sm:flex absolute inset-y-0 right-0 items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-            <button
+          <div className="hidden sm:flex absolute inset-y-0 right-0 items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0 cursor-pointer">
+            {/* <button
               type="button"
               className="flex items-center gap-2 rounded-full gold-gradient-btn px-4 py-2 text-black font-medium shadow hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
             >
               <WalletIcon className="h-5 w-5" />
               Connect Wallet
-            </button>
+            </button> */}
+ {account ? (
+    <button onClick={disconnectWallet} className="flex items-center gap-2 rounded-full gold-gradient-btn px-4 py-2 text-black font-medium shadow hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+      Disconnect: {account.slice(0, 3)}...{account.slice(-2)}
+    </button>
+  ) : (
+    <button onClick={connectWallet} className="flex items-center gap-2 rounded-full gold-gradient-btn px-4 py-2 text-black font-medium shadow hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+      Connect Wallet
+    </button>
+  )}
           </div>
         </div>
       </div>
@@ -124,13 +236,15 @@ export default function Example() {
           ))}
           {/* Mobile "Connect Wallet" button */}
           <div className="mt-3 px-3">
-            <button
-              type="button"
-              className="flex w-full items-center justify-center gap-2 rounded-full bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 px-4 py-2 text-black font-medium shadow hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
-            >
-              <WalletIcon className="h-5 w-5" />
-              Connect Wallet
-            </button>
+          {account ? (
+    <button onClick={disconnectWallet} className="flex items-center gap-2 rounded-full gold-gradient-btn px-4 py-2 text-black font-medium shadow hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+      Disconnect: {account.slice(0, 3)}...{account.slice(-2)}
+    </button>
+  ) : (
+    <button onClick={connectWallet} className="flex items-center gap-2 rounded-full gold-gradient-btn px-4 py-2 text-black font-medium shadow hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+      Connect Wallet
+    </button>
+  )}
           </div>
         </div>
       </DisclosurePanel>
