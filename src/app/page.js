@@ -9,7 +9,7 @@ import Portfolio from "@/components/portfolio/page";
 export default function Home() {
   return (
     <>
-      <div className="bg-black">
+      <div className="bg-black min-h-screen">
         {/* <BackgroundBeams /> */}
         <HeroSection />
         <FutureFinanace />
