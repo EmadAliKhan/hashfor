@@ -12,6 +12,7 @@
     "@coinbase/wallet-sdk": "^4.3.2",
     "@headlessui/react": "^2.2.2",
     "@heroicons/react": "^2.2.0",
+    "@radix-ui/react-label": "^2.1.6",
     "@tabler/icons-react": "^3.31.0",
     "@walletconnect/web3-provider": "^1.8.0",
     "chart.js": "^4.4.9",
